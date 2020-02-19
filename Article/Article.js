@@ -113,36 +113,40 @@ const data = [
 
 */
 
-function articleCreator(title, date, firstParagraph, secondParagraph, thirdParagraph) {
-	// Define Variables
+function paraCreator(attr, data) {
+	// Paragraph generator with attribute and text value
 
-	const artCont = document.createElement('div').setAttribute('class', 'article');
-	const artTitle = document.createElement('h2');
-	const artDate = document.createElement('p').setAttribute('class', 'date');
-	const artPara1 = document.createElement('p').setAttribute('class', 'firstParagraph');
-	const artPara2 = document.createElement('p').setAttribute('class', 'secondParagraph');
-	const artPara3 = document.createElement('p').setAttribute('class', 'thirdParagraph');
-	const artButton = document.createElement('span').setAttribute('class', 'expandButton');
+	let paragraph = document.createElement('p').setAttribute(attr, data);
+	return paragraph;
+}
 
-	// Add Data to Component Elements
+function articleCreator(title) {
+	//Contains Article Container, Title, and Button
 
-	artTitle.textContent = title;
-	artDate.textContent = date;
-	artPara1.textContent = firstParagraph;
-	artPara2.textContent = secondParagraph;
-	artPara3.textContent = thirdParagraph;
+	// Handle Article Container
+	let artCont = document.createElement('div');
+	artCont.classList.add('article');
 
-	// Add Event Listener to Button
+	// Handle Title
+	let artTitle = document.createElement('h2');
+	let titleTxt = document.createTextNode(title);
+	artTitle.appendChild(titleTxt);
+
+	// Handle Button
+	let artButton = document.createElement('span');
+	artButton.classList.add('expandButton');
 
 	artButton.addEventListener('click', function() {
 		artButton.toggleAttribute('article-open');
 	});
 
-	// Append All the Things
-
-	artCont.appendChild(artTitle, artDate, artPara1, artPara2, artPara3, artButton);
-
-	// Return Component
-
-	return artCont;
+	// Append All the Things & Return!
+	let article = document.querySelector('.articles');
+	artCont.appendChild(artTitle);
+	artCont.appendChild(artButton);
+	article.appendChild(artCont);
+	return article;
 }
+let newArticles = data.map(item => {
+	articleCreator(item.title);
+});

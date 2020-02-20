@@ -113,16 +113,28 @@ const data = [
 
 */
 
-function paraCreator(attr, data) {
-	// Paragraph generator with attribute and text value
+// // Loop through any paragraphs and add
+// 	let para = function paraCreator(attr, data) {
+// 		// Paragraph generator with attribute and text value
+// 		let paragraph = document.createElement('p').setAttribute(attr, data);
+// 		return paragraph;
+// 	};
 
-	let paragraph = document.createElement('p').setAttribute(attr, data);
-	return paragraph;
-}
+// function menuComponent(arr) {
 
-function articleCreator(title) {
-	//Contains Article Container, Title, and Button
+// 	const menu = document.createElement('div');
+// 	menu.classList.add('menu');
 
+// 	const list = document.createElement('ul');
+// 	const listItem = document.createElement('li');
+
+// 	menu.appendChild(list);
+// 	list.appendChild(listItem);
+
+// 	console.log(menu);
+// }
+
+function articleCreator(title, date, para1, para2, para3) {
 	// Handle Article Container
 	let artCont = document.createElement('div');
 	artCont.classList.add('article');
@@ -132,21 +144,54 @@ function articleCreator(title) {
 	let titleTxt = document.createTextNode(title);
 	artTitle.appendChild(titleTxt);
 
+	// Handle Date
+	let artDate = document.createElement('p');
+	let dateTxt = document.createTextNode(date);
+	artDate.appendChild(dateTxt);
+	artDate.classList.add('date');
+
+	// Handle Paragraph Text
+	let artPara1 = document.createElement('p');
+	let para1Txt = document.createTextNode(para1);
+	artPara1.appendChild(para1Txt);
+
+	let artPara2 = document.createElement('p');
+	let para2Txt = document.createTextNode(para2);
+	artPara2.appendChild(para2Txt);
+
+	let artPara3 = document.createElement('p');
+	let para3Txt = document.createTextNode(para3);
+	artPara3.appendChild(para3Txt);
+
 	// Handle Button
 	let artButton = document.createElement('span');
+	let expandText = document.querySelector('div.article');
 	artButton.classList.add('expandButton');
-
+	artButton.textContent = 'Clicky Here';
 	artButton.addEventListener('click', function() {
-		artButton.toggleAttribute('article-open');
+		expandText.toggleAttribute('.article-open');
 	});
 
 	// Append All the Things & Return!
 	let article = document.querySelector('.articles');
+
 	artCont.appendChild(artTitle);
+	artCont.appendChild(artDate);
 	artCont.appendChild(artButton);
+	artCont.appendChild(artPara1);
+	artCont.appendChild(artPara2);
+	artCont.appendChild(artPara3);
+
 	article.appendChild(artCont);
 	return article;
 }
+
 let newArticles = data.map(item => {
-	articleCreator(item.title);
+	articleCreator(
+		item.title,
+		item.date,
+		item.firstParagraph,
+		item.secondParagraph,
+		item.thirdParagraph
+	);
 });

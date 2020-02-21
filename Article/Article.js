@@ -170,7 +170,6 @@ function articleCreator(title, date, para1, para2, para3) {
 
 	artButton.addEventListener('click', function() {
 		artCont.classList.toggle('article-open');
-		// return artCont;
 	});
 
 	// Append All the Things & Return!

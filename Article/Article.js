@@ -165,11 +165,12 @@ function articleCreator(title, date, para1, para2, para3) {
 
 	// Handle Button
 	let artButton = document.createElement('span');
-	let expandText = document.querySelector('div.article');
 	artButton.classList.add('expandButton');
 	artButton.textContent = 'Clicky Here';
+
 	artButton.addEventListener('click', function() {
-		expandText.toggleAttribute('.article-open');
+		artCont.classList.toggle('article-open');
+		// return artCont;
 	});
 
 	// Append All the Things & Return!
@@ -177,16 +178,16 @@ function articleCreator(title, date, para1, para2, para3) {
 
 	artCont.appendChild(artTitle);
 	artCont.appendChild(artDate);
-	artCont.appendChild(artButton);
 	artCont.appendChild(artPara1);
 	artCont.appendChild(artPara2);
 	artCont.appendChild(artPara3);
-
+	artCont.appendChild(artButton);
 	article.appendChild(artCont);
+
 	return article;
 }
 
-let newArticles = data.map(item => {
+let newArticles = data.forEach(item => {
 	articleCreator(
 		item.title,
 		item.date,

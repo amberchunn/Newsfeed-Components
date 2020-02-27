@@ -1,15 +1,8 @@
 /* This is the data we will be using, study it but don't change anything, yet. */
 
-let menuItems = [
-  'Students',
-  'Faculty',
-  "What's New",
-  'Tech Trends',
-  'Music',
-  'Log Out'
-];
+let menuItems = ['Students', 'Faculty', "What's New", 'Tech Trends', 'Music', 'Log Out'];
 
-/* 
+/*
 
   Step 1: Write a function that will create a menu component as seen below:
 
@@ -21,7 +14,7 @@ let menuItems = [
 
   The function takes an array as its only argument.
 
-  Step 2: Inside this function, iterate over the array creating a list item <li> element for each item in the array. 
+  Step 2: Inside this function, iterate over the array creating a list item <li> element for each item in the array.
   Add those items to the <ul>
 
   Step 3: Using a DOM selector, select the menu button (the element with a class of 'menu-button') currently on the DOM.
@@ -31,5 +24,35 @@ let menuItems = [
   Step 5: return the menu component.
 
   Step 6: add the menu component to the DOM.
-  
+
 */
+let mainMenu = function(arr) {
+	// Create Containers
+	let container = document.createElement('div').setAttribute('class', 'menu');
+	let menuCont = document.createElement('ul').setAttribute('id', 'navigation');
+
+	// Create List Items & Add to the UL
+	arr.forEach(item => {
+		let navItem = document.createElement('li').setAttribute('href', '#');
+		document.createTextNode(item);
+		menuCont.document.appendChild(navItem);
+	});
+
+	let menuListener = document.querySelector('.menu-button');
+
+	// Listen for Menu Click
+	menuListener.addEventListener('click', function() {
+		menuListener.classList.toggle('menu-open');
+	});
+	console.log(menuListener);
+
+	// Add Menu to Container
+	container.appendChild(menuCont);
+
+	// Throw Everything Onto the DOM
+	// Using Fragment As a Permanent Container in Memory Isn't Needed
+	mainMenu.document.querySelector('.header');
+
+	// Go Go Gadget Menu
+	return mainMenu;
+};

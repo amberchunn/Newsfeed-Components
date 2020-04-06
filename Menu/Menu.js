@@ -26,33 +26,32 @@ let menuItems = ['Students', 'Faculty', "What's New", 'Tech Trends', 'Music', 'L
   Step 6: add the menu component to the DOM.
 
 */
-let mainMenu = function(arr) {
-	// Create Containers
+
+// Create Containers
+
+let mainMenu = function (arr) {
 	let container = document.createElement('div').setAttribute('class', 'menu');
-	let menuCont = document.createElement('ul').setAttribute('id', 'navigation');
+
+	let menuCont = document.createElement('ul').setAttribute('class', 'navigation');
 
 	// Create List Items & Add to the UL
-	arr.forEach(item => {
-		let navItem = document.createElement('li').setAttribute('href', '#');
-		document.createTextNode(item);
-		menuCont.document.appendChild(navItem);
+	arr.forEach(function (item) {
+		let menuLink = document.createElement('li');
+		menuLink.textContent(item);
+		menuCont.document.appendChild(menuLink);
 	});
-
-	let menuListener = document.querySelector('.menu-button');
 
 	// Listen for Menu Click
-	menuListener.addEventListener('click', function() {
+	let menuListener = document.querySelector('.menu-button');
+
+	container.addEventListener('click', function () {
 		menuListener.classList.toggle('menu-open');
 	});
-	console.log(menuListener);
-
 	// Add Menu to Container
 	container.appendChild(menuCont);
 
 	// Throw Everything Onto the DOM
-	// Using Fragment As a Permanent Container in Memory Isn't Needed
-	mainMenu.document.querySelector('.header');
-
-	// Go Go Gadget Menu
-	return mainMenu;
+	let frag = document.querySelector('.header');
+	frag.appendChild(mainMenu);
+	console.log(frag);
 };

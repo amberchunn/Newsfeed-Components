@@ -20,7 +20,7 @@ const data = [
 		thirdParagraph: `Dagobah hutt jawa leia calamari ventress skywalker yoda. Binks wicket hutt coruscant sidious
         naboo ackbar tatooine. Hutt lars padmé darth. Maul solo darth darth jabba qui-gon chewbacca darth maul. Moff baba wicket
         han. C-3po antilles moff qui-gon ahsoka aayla dooku amidala. Palpatine droid amidala droid k-3po twi'lek padmé wookiee. Leia
-        moff calamari mon obi-wan. Solo grievous lando coruscant. Jinn darth palpatine obi-wan mon.`
+        moff calamari mon obi-wan. Solo grievous lando coruscant. Jinn darth palpatine obi-wan mon.`,
 	},
 	{
 		title: 'Javascript and You, ES6',
@@ -40,7 +40,7 @@ const data = [
 		thirdParagraph: `Toad-like smile Flourish and Blotts he knew I’d come back Quidditch World Cup. Fat Lady baubles banana fritters fairy lights
         Petrificus Totalus. So thirsty, deluminator firs’ years follow me 12 inches of parchment. Head Boy start-of-term banquet Cleansweep Seven
         roaring lion hat. Unicorn blood crossbow mars is bright tonight, feast Norwegian Ridgeback. Come seek us where our voices sound, we cannot
-        sing above the ground, Ginny Weasley bright red. Fanged frisbees, phoenix tears good clean match.`
+        sing above the ground, Ginny Weasley bright red. Fanged frisbees, phoenix tears good clean match.`,
 	},
 	{
 		title: 'React vs Angular vs Vue',
@@ -68,7 +68,7 @@ const data = [
 
 		thirdParagraph: `Gotta catch 'em all Horsea gym Ninjask Absol Sinnoh Poliwag. Gotta catch 'em all Youngster wants to fight Soda Pop Floatzel
         Leech Life Seismitoad Ariados. Earthquake Pokemon Glitch City Tail Whip Skitty Ekans Dialga. Ut aliquip ex ea commodo consequat James
-        Castform Lotad the power that's inside Burnt Berry Makuhita. Ghost Ariados Corphish Dusclops Golbat Gligar Zweilous.`
+        Castform Lotad the power that's inside Burnt Berry Makuhita. Ghost Ariados Corphish Dusclops Golbat Gligar Zweilous.`,
 	},
 	{
 		title: 'Professional Software Development in 2019',
@@ -84,8 +84,8 @@ const data = [
 
 		thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
-          Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
-	}
+          Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`,
+	},
 ];
 
 /* Step 1: Create a function that creates a component. You will want your component to look like the template below:
@@ -113,85 +113,60 @@ const data = [
 
 */
 
-// // Loop through any paragraphs and add
-// 	let para = function paraCreator(attr, data) {
-// 		// Paragraph generator with attribute and text value
-// 		let paragraph = document.createElement('p').setAttribute(attr, data);
-// 		return paragraph;
-// 	};
+function articleCreator(title, date, firstParagraph, secondParagraph, thirdParagraph) {
+	// Article Container
+	let container = document.createElement('div');
+	container.classList.add('article');
 
-// function menuComponent(arr) {
+	// Title
+	let titleEl = document.createElement('h2');
+	titleEl.textContent = title;
 
-// 	const menu = document.createElement('div');
-// 	menu.classList.add('menu');
+	// Date
+	let dateEl = document.createElement('p');
+	dateEl.textContent = date;
+	dateEl.classList.add('date');
 
-// 	const list = document.createElement('ul');
-// 	const listItem = document.createElement('li');
+	// Paragraphs
+	let para1 = document.createElement('p');
+	para1.textContent = firstParagraph;
 
-// 	menu.appendChild(list);
-// 	list.appendChild(listItem);
+	let para2 = document.createElement('p');
+	para2.textContent = secondParagraph;
 
-// 	console.log(menu);
-// }
+	let para3 = document.createElement('p');
+	para3.textContent = thirdParagraph;
 
-function articleCreator(title, date, para1, para2, para3) {
-	// Handle Article Container
-	let artCont = document.createElement('div');
-	artCont.classList.add('article');
+	// Button
+	let button = document.createElement('span');
+	button.classList.add('expandButton');
+	button.textContent = 'Clicky Here';
 
-	// Handle Title
-	let artTitle = document.createElement('h2');
-	let titleTxt = document.createTextNode(title);
-	artTitle.appendChild(titleTxt);
-
-	// Handle Date
-	let artDate = document.createElement('p');
-	let dateTxt = document.createTextNode(date);
-	artDate.appendChild(dateTxt);
-	artDate.classList.add('date');
-
-	// Handle Paragraph Text
-	let artPara1 = document.createElement('p');
-	let para1Txt = document.createTextNode(para1);
-	artPara1.appendChild(para1Txt);
-
-	let artPara2 = document.createElement('p');
-	let para2Txt = document.createTextNode(para2);
-	artPara2.appendChild(para2Txt);
-
-	let artPara3 = document.createElement('p');
-	let para3Txt = document.createTextNode(para3);
-	artPara3.appendChild(para3Txt);
-
-	// Handle Button
-	let artButton = document.createElement('span');
-	artButton.classList.add('expandButton');
-	artButton.textContent = 'Clicky Here';
-
-	artButton.addEventListener('click', function() {
-		artCont.classList.toggle('article-open');
+	button.addEventListener('click', function () {
+		container.classList.toggle('article-open');
 	});
 
-	// Append All the Things & Return!
-	let article = document.querySelector('.articles');
+	container.appendChild(titleEl);
+	container.appendChild(dateEl);
+	container.appendChild(para1);
+	container.appendChild(para2);
+	container.appendChild(para3);
+	container.appendChild(button);
 
-	artCont.appendChild(artTitle);
-	artCont.appendChild(artDate);
-	artCont.appendChild(artPara1);
-	artCont.appendChild(artPara2);
-	artCont.appendChild(artPara3);
-	artCont.appendChild(artButton);
-	article.appendChild(artCont);
-
-	return article;
+	// console.log(container);
+	return container;
 }
 
-let newArticles = data.forEach(item => {
-	articleCreator(
+let articleListing = data.map((item) => {
+	let article = articleCreator(
 		item.title,
 		item.date,
 		item.firstParagraph,
 		item.secondParagraph,
 		item.thirdParagraph
 	);
+
+	// Append All the Things & Return!
+	let listContainer = document.querySelector('.articles');
+	listContainer.appendChild(article);
 });

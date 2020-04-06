@@ -30,28 +30,32 @@ let menuItems = ['Students', 'Faculty', "What's New", 'Tech Trends', 'Music', 'L
 // Create Containers
 
 let mainMenu = function (arr) {
-	let container = document.createElement('div').setAttribute('class', 'menu');
+	let container = document.createElement('div');
+	container.setAttribute('class', 'menu');
 
-	let menuCont = document.createElement('ul').setAttribute('class', 'navigation');
+	let menuCont = document.createElement('ul');
+	menuCont.setAttribute('class', 'navigation');
 
 	// Create List Items & Add to the UL
-	arr.forEach(function (item) {
-		let menuLink = document.createElement('li');
-		menuLink.textContent(item);
-		menuCont.document.appendChild(menuLink);
+	arr.map((item) => {
+		let link = document.createElement('li');
+		link.textContent = item;
+		return menuCont.appendChild(link);
 	});
 
 	// Listen for Menu Click
 	let menuListener = document.querySelector('.menu-button');
 
-	container.addEventListener('click', function () {
-		menuListener.classList.toggle('menu-open');
+	menuListener.addEventListener('click', (event) => {
+		container.classList.toggle('menu--open');
 	});
+
 	// Add Menu to Container
 	container.appendChild(menuCont);
 
 	// Throw Everything Onto the DOM
-	let frag = document.querySelector('.header');
-	frag.appendChild(mainMenu);
-	console.log(frag);
+	const headerNav = document.querySelector('.header');
+	headerNav.appendChild(container);
 };
+
+mainMenu(menuItems);
